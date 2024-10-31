@@ -97,5 +97,9 @@ object Algorithms {
 
         val intersection = set1.filter { set2.contains(it) }
         println("intersection: $intersection")
+
+        //alternate method is intersection
+        /*val intersection2 = set1.intersect(set2)
+        println("intersection2: $intersection2")*/
     }
 }
