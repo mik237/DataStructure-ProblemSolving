@@ -4,7 +4,9 @@ package me.ibrahim.datastructure_problemsolving.algorithms
 fun main() {
 //    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvfkhweiugdkjvhdskfhskbksfdwoeu")
 
-    Algorithms.areAnagrams("listen", "silent")
+//    Algorithms.areAnagrams("listen", "silent")
+
+    Algorithms.mostFrequentElement(intArrayOf(1, 2, 3, 4, 5, 4, 3, 5, 6, 10, 4, 3, 6, 7, 1, 0, 4))
 }
 
 object Algorithms {
@@ -41,5 +43,24 @@ object Algorithms {
 
         val anagram = str1.toCharArray().sorted() == str2.toCharArray().sorted()
         println("Anagram: $anagram")
+    }
+
+
+    /**
+     *  Find the Most Frequent Element in an Array
+     */
+    fun mostFrequentElement(arr: IntArray) {
+        println(arr.sorted())
+        val group = arr.groupBy { it }
+        println(group)
+        val frequencyMap = group.mapValues {
+            it.value.size
+        }
+
+        println(frequencyMap)
+
+        val frequent = frequencyMap.maxByOrNull { it.value }?.key
+
+        println("frequent: $frequent")
     }
 }
