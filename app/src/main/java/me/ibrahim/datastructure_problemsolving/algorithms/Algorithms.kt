@@ -7,7 +7,10 @@ fun main() {
 //    Algorithms.areAnagrams("listen", "silent")
 
 //    Algorithms.mostFrequentElement(intArrayOf(1, 2, 3, 4, 5, 4, 3, 5, 6, 10, 4, 3, 6, 7, 1, 0, 4))
-    Algorithms.checkDuplicates(intArrayOf(1, 2, 3, 4, 5))
+
+//    Algorithms.checkDuplicates(intArrayOf(1, 2, 3, 4, 5))
+
+    Algorithms.intersection(intArrayOf(9, 2, 5, 7, 4, 5), intArrayOf(1, 2, 3, 4, 5))
 }
 
 object Algorithms {
@@ -81,5 +84,18 @@ object Algorithms {
             }
         }
         println("Duplicate: $duplicates")
+    }
+
+
+    /**
+     * Find the Intersection of Two Arrays.
+     * since intersection is usually applied on Sets, so converting to sets
+     */
+    fun intersection(arr1: IntArray, arr2: IntArray) {
+        val set1 = arr1.toSet()
+        val set2 = arr2.toSet()
+
+        val intersection = set1.filter { set2.contains(it) }
+        println("intersection: $intersection")
     }
 }
