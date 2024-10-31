@@ -26,7 +26,7 @@ fun main() {
 
 //    Algorithms.findPairWithSum(intArrayOf(1, 2, 7, 11, 15), 45)
 
-    Algorithms.findMaxAndMin(intArrayOf(40, 1, 2, -3, 7, 11, 15))
+    Algorithms.findMaxAndMin(intArrayOf())
 }
 
 object Algorithms {
@@ -220,17 +220,23 @@ object Algorithms {
      * Find max & min in the array
      */
     fun findMaxAndMin(arr: IntArray) {
-        var max = arr[0]
-        var min = arr[0]
-        for (i in 1..<arr.size) {
-            if (arr[i] > max)
-                max = arr[i]
+        println(arr.toList())
 
-            if (arr[i] < min)
-                min = arr[i]
+        if (arr.isEmpty()) {
+            println("Max: null, Min: null")
+        } else {
+            var max = arr[0]
+            var min = arr[0]
+            for (i in 1..arr.lastIndex) {
+                if (arr[i] > max)
+                    max = arr[i]
+                if (arr[i] < min)
+                    min = arr[i]
+            }
+            println("Max: $max, Min: $min")
         }
 
-        println(arr.toList())
-        println("Max: $max, Min: $min")
+        //using buildIn functions on IntArray
+        println(".max(): ${arr.maxOrNull()}, .min(): ${arr.minOrNull()}")
     }
 }
