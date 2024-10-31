@@ -1,5 +1,7 @@
 package me.ibrahim.datastructure_problemsolving.algorithms
 
+import androidx.compose.ui.util.fastForEachReversed
+
 
 fun main() {
 //    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvfkhweiugdkjvhdskfhskbksfdwoeu")
@@ -12,7 +14,13 @@ fun main() {
 
 //    Algorithms.intersection(intArrayOf(9, 2, 5, 7, 4, 5), intArrayOf(1, 2, 3, 4, 5))
 
-    Algorithms.removeDuplicates(intArrayOf(9, 2, 5, 5, 5, 5, 7, 7, 4, 5))
+//    Algorithms.removeDuplicates(intArrayOf(9, 2, 5, 5, 5, 5, 7, 7, 4, 5))
+
+    Algorithms.reverseWords("hello world dubai uae")
+
+    Algorithms.reverseStringUsingRecursion("Hello world").let {
+        print("Reverse with Recursion: $it")
+    }
 }
 
 object Algorithms {
@@ -120,5 +128,33 @@ object Algorithms {
                 unique.add(a)
         }
         println(unique)
+    }
+
+
+    /**
+     * Reverse Words in a Sentence
+     */
+    fun reverseWords(sentence: String) {
+        //reversing words in string.
+        val reversedStr = sentence.split(" ").reversed()
+        println(reversedStr)
+
+        //reversing words & then reversing characters of each word.
+        sentence.split(" ").fastForEachReversed {
+            println(it.reversed())
+        }
+
+        //using iteration
+        var reversedStr2 = ""
+        for (i in sentence.length - 1 downTo 0) {
+            reversedStr2 += sentence[i]
+        }
+        println("using iteration: $reversedStr2")
+    }
+
+    fun reverseStringUsingRecursion(sentence: String): String {
+        if (sentence.isEmpty())
+            return ""
+        else return reverseStringUsingRecursion(sentence.substring(1)) + sentence[0]
     }
 }
