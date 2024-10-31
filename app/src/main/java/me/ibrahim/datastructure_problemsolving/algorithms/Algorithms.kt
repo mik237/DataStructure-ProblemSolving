@@ -26,7 +26,9 @@ fun main() {
 
 //    Algorithms.findPairWithSum(intArrayOf(1, 2, 7, 11, 15), 45)
 
-    Algorithms.findMaxAndMin(intArrayOf())
+//    Algorithms.findMaxAndMin(intArrayOf())
+
+    Algorithms.reverseArray(intArrayOf(1, 2, 3, 4, 5))
 }
 
 object Algorithms {
@@ -238,5 +240,24 @@ object Algorithms {
 
         //using buildIn functions on IntArray
         println(".max(): ${arr.maxOrNull()}, .min(): ${arr.minOrNull()}")
+    }
+
+    /**
+     * Reverse an array
+     */
+    fun reverseArray(arr: IntArray) {
+
+        println(arr.toList())
+
+        /*reverse() & reversed() are two built-in functions*/
+//        arr.reverse() //reverses the actual content of the array.
+        val reverse = arr.reversed() //returns a new list with content reversed of original array.
+        println(reverse)
+
+        val reversedList = mutableListOf<Int>()
+        for (i in arr.lastIndex downTo 0) {
+            reversedList.add(arr[i])
+        }
+        println(reversedList)
     }
 }
