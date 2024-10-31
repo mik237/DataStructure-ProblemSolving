@@ -1,11 +1,16 @@
 package me.ibrahim.datastructure_problemsolving.algorithms
 
+import kotlin.math.sin
+
 fun main() {
     val singleLinkedList = SingleLinkedList<String>()
     singleLinkedList.insertAtBeginning("A")
     singleLinkedList.insertAtEnd("B")
-    singleLinkedList.insertAtBeginning("C")
+    singleLinkedList.insertAtEnd("C")
     singleLinkedList.insertAtEnd("D")
+    singleLinkedList.insertAfter("G", "B")
+    singleLinkedList.printLinkedList()
+    singleLinkedList.deleteFromBeginning()
     singleLinkedList.printLinkedList()
 
 }
@@ -40,7 +45,52 @@ class SingleLinkedList<T> {
         }
     }
 
+    fun insertAfter(data: T, after: T) {
+        val newNode = SingleNode(data = data)
+
+        if (head == null) {
+            head = newNode
+        } else {
+            var current = head
+
+            while (current != null) {
+                if (current.data == after) {
+                    newNode.next = current.next
+                    current.next = newNode
+                    break
+                }
+                current = current.next
+            }
+        }
+    }
+
+    fun deleteFromBeginning() {
+        head?.let {
+            var tempHead = head
+            head = head?.next
+            tempHead?.next = null
+            tempHead = null
+        }
+    }
+
+    fun deleteFromEnd() {
+        if (head == null)
+            return
+        if (head?.next == null) {
+            head = null
+            return
+        }
+
+        var current = head
+        while (current?.next?.next != null) {
+            current = current.next
+        }
+        current?.next = null
+
+    }
+
     fun printLinkedList() {
+        println()
         var current = head
         while (current != null) {
             if (current.next == null)
