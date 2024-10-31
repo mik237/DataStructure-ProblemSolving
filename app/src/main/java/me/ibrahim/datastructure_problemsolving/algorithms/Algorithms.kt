@@ -28,7 +28,9 @@ fun main() {
 
 //    Algorithms.findMaxAndMin(intArrayOf())
 
-    Algorithms.reverseArray(intArrayOf(1, 2, 3, 4, 5))
+//    Algorithms.reverseArray(intArrayOf(1, 2, 3, 4, 5))
+
+    Algorithms.findMinAbsoluteDifference(intArrayOf(50, 16, 3, 8, 15, 17))
 }
 
 object Algorithms {
@@ -132,8 +134,7 @@ object Algorithms {
 
         val unique = mutableListOf<Int>()
         for (a in arr) {
-            if (unique.contains(a).not())
-                unique.add(a)
+            if (unique.contains(a).not()) unique.add(a)
         }
         println(unique)
     }
@@ -166,8 +167,7 @@ object Algorithms {
     }
 
     fun reverseStringUsingRecursion(sentence: String): String {
-        if (sentence.isEmpty())
-            return ""
+        if (sentence.isEmpty()) return ""
         else return reverseStringUsingRecursion(sentence.substring(1)) + sentence[0]
     }
 
@@ -230,10 +230,8 @@ object Algorithms {
             var max = arr[0]
             var min = arr[0]
             for (i in 1..arr.lastIndex) {
-                if (arr[i] > max)
-                    max = arr[i]
-                if (arr[i] < min)
-                    min = arr[i]
+                if (arr[i] > max) max = arr[i]
+                if (arr[i] < min) min = arr[i]
             }
             println("Max: $max, Min: $min")
         }
@@ -259,5 +257,31 @@ object Algorithms {
             reversedList.add(arr[i])
         }
         println(reversedList)
+    }
+
+    /**
+     * Minimum Absolute Difference in an Array.
+     * smallest absolute difference between any two elements in an array
+     */
+    fun findMinAbsoluteDifference(arr: IntArray) {
+        if (arr.size < 2) {
+            //if arr size is less than 2, there is no pair possible, hence difference is 0
+            print(0)
+        } else {
+            arr.sort()
+            var minAbsDiff = Int.MAX_VALUE
+            var a = arr[0]
+            var b = arr[1]
+            for (i in 0..<arr.lastIndex) {
+                val absDiff = kotlin.math.abs(arr[i] - arr[i + 1])
+                if (absDiff < minAbsDiff) {
+                    a = arr[i]
+                    b = arr[i + 1]
+                    minAbsDiff = absDiff
+                }
+            }
+            println("Min Abs Diff ($a, $b): $minAbsDiff")
+        }
+
     }
 }
