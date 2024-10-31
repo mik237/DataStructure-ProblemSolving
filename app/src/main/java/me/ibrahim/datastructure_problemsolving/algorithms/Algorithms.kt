@@ -150,6 +150,11 @@ object Algorithms {
             reversedStr2 += sentence[i]
         }
         println("using iteration: $reversedStr2")
+
+        //another approach using StringBuilder#reverse function
+        var reversedStr3 = StringBuilder(sentence).reverse()
+        println("reversedStr3: $reversedStr2")
+
     }
 
     fun reverseStringUsingRecursion(sentence: String): String {
