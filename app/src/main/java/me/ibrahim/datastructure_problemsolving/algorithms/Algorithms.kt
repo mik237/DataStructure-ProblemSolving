@@ -16,11 +16,13 @@ fun main() {
 
 //    Algorithms.removeDuplicates(intArrayOf(9, 2, 5, 5, 5, 5, 7, 7, 4, 5))
 
-    Algorithms.reverseWords("hello world dubai uae")
+//    Algorithms.reverseWords("hello world dubai uae")
 
-    Algorithms.reverseStringUsingRecursion("Hello world").let {
-        print("Reverse with Recursion: $it")
-    }
+//    Algorithms.reverseStringUsingRecursion("Hello world").let {
+//        print("Reverse with Recursion: $it")
+//    }
+
+    Algorithms.countCharOccurrences("helloWorld")
 }
 
 object Algorithms {
@@ -161,5 +163,22 @@ object Algorithms {
         if (sentence.isEmpty())
             return ""
         else return reverseStringUsingRecursion(sentence.substring(1)) + sentence[0]
+    }
+
+
+    /**
+     * Count Occurrences of Each Character
+     */
+    fun countCharOccurrences(input: String) {
+        //Method # 1
+        val group = input.toCharArray().groupBy { it }.mapValues { it.value.size }
+        println(group)
+
+        //Method # 2
+        val map = mutableMapOf<Char, Int>()
+        for (c in input) {
+            map[c] = (map[c] ?: 0) + 1
+        }
+        println(map)
     }
 }
