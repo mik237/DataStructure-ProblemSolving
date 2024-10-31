@@ -22,7 +22,8 @@ fun main() {
 //        print("Reverse with Recursion: $it")
 //    }
 
-    Algorithms.countCharOccurrences("helloWorld")
+//    Algorithms.countCharOccurrences("helloWorld")
+    Algorithms.findPairWithSum(intArrayOf(1, 2, 7, 11, 15), 45)
 }
 
 object Algorithms {
@@ -180,5 +181,34 @@ object Algorithms {
             map[c] = (map[c] ?: 0) + 1
         }
         println(map)
+    }
+
+    /**
+     * Write a function that finds a pair of numbers in an array that add up to a specific target.
+     */
+    fun findPairWithSum(arr: IntArray, target: Int) {
+        println(arr.toList())
+
+        //Method #1
+        val seenNumbers = arr.toMutableList()
+        for (a in arr) {
+            val b = target - a
+            seenNumbers.remove(a)
+            if (seenNumbers.contains(b)) {
+                println(Pair(a, b))
+                break
+            }
+        }
+
+        //Method #2
+        val seenNumbersSet = mutableSetOf<Int>()
+        for (a in arr) {
+            val b = target - a
+            if (seenNumbersSet.contains(b)) {
+                println(Pair(b, a))
+                break
+            }
+            seenNumbersSet.add(a)
+        }
     }
 }
