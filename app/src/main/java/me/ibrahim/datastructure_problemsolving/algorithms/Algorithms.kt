@@ -23,7 +23,10 @@ fun main() {
 //    }
 
 //    Algorithms.countCharOccurrences("helloWorld")
-    Algorithms.findPairWithSum(intArrayOf(1, 2, 7, 11, 15), 45)
+
+//    Algorithms.findPairWithSum(intArrayOf(1, 2, 7, 11, 15), 45)
+
+    Algorithms.findMaxAndMin(intArrayOf(40, 1, 2, -3, 7, 11, 15))
 }
 
 object Algorithms {
@@ -210,5 +213,24 @@ object Algorithms {
             }
             seenNumbersSet.add(a)
         }
+    }
+
+
+    /**
+     * Find max & min in the array
+     */
+    fun findMaxAndMin(arr: IntArray) {
+        var max = arr[0]
+        var min = arr[0]
+        for (i in 1..<arr.size) {
+            if (arr[i] > max)
+                max = arr[i]
+
+            if (arr[i] < min)
+                min = arr[i]
+        }
+
+        println(arr.toList())
+        println("Max: $max, Min: $min")
     }
 }
