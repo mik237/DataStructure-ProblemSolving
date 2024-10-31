@@ -10,7 +10,9 @@ fun main() {
 
 //    Algorithms.checkDuplicates(intArrayOf(1, 2, 3, 4, 5))
 
-    Algorithms.intersection(intArrayOf(9, 2, 5, 7, 4, 5), intArrayOf(1, 2, 3, 4, 5))
+//    Algorithms.intersection(intArrayOf(9, 2, 5, 7, 4, 5), intArrayOf(1, 2, 3, 4, 5))
+
+    Algorithms.removeDuplicates(intArrayOf(9, 2, 5, 5, 5, 5, 7, 7, 4, 5))
 }
 
 object Algorithms {
@@ -101,5 +103,22 @@ object Algorithms {
         //alternate method is intersection
         /*val intersection2 = set1.intersect(set2)
         println("intersection2: $intersection2")*/
+    }
+
+
+    /**
+     * Remove Duplicates from an Array
+     */
+    fun removeDuplicates(arr: IntArray) {
+        //using toSet() function
+        /*val withoutDuplicates = arr.toSet()
+        println(withoutDuplicates)*/
+
+        val unique = mutableListOf<Int>()
+        for (a in arr) {
+            if (unique.contains(a).not())
+                unique.add(a)
+        }
+        println(unique)
     }
 }
