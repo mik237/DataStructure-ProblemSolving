@@ -6,7 +6,8 @@ fun main() {
 
 //    Algorithms.areAnagrams("listen", "silent")
 
-    Algorithms.mostFrequentElement(intArrayOf(1, 2, 3, 4, 5, 4, 3, 5, 6, 10, 4, 3, 6, 7, 1, 0, 4))
+//    Algorithms.mostFrequentElement(intArrayOf(1, 2, 3, 4, 5, 4, 3, 5, 6, 10, 4, 3, 6, 7, 1, 0, 4))
+    Algorithms.checkDuplicates(intArrayOf(1, 2, 3, 4, 5))
 }
 
 object Algorithms {
@@ -62,5 +63,23 @@ object Algorithms {
         val frequent = frequencyMap.maxByOrNull { it.value }?.key
 
         println("frequent: $frequent")
+    }
+
+
+    /**
+     * Check for Duplicates in an Array
+     */
+    fun checkDuplicates(arr: IntArray) {
+        var duplicates = false
+        val uniqueElements = mutableSetOf<Int>()
+
+        for (i in arr) {
+            //returns false if not added. i.e. value already exist in Set
+            if (uniqueElements.add(i).not()) {
+                duplicates = true
+                break
+            }
+        }
+        println("Duplicate: $duplicates")
     }
 }
