@@ -6,18 +6,24 @@ fun main() {
     val singleLinkedList = SingleLinkedList<String>()
     singleLinkedList.insertAtBeginning("A")
     singleLinkedList.insertAtEnd("B")
-//    singleLinkedList.insertAtEnd("C")
-//    singleLinkedList.insertAtEnd("D")
-//    singleLinkedList.insertAfter("E", "D")
-//    singleLinkedList.insertAtEnd("F")
-//    singleLinkedList.insertAtEnd("G")
+    singleLinkedList.insertAtEnd("C")
+    singleLinkedList.insertAtEnd("D")
+    singleLinkedList.insertAtEnd("D")
+    singleLinkedList.insertAtEnd("D")
+    singleLinkedList.insertAtEnd("D")
+    singleLinkedList.insertAtEnd("D")
+    singleLinkedList.insertAfter("E", "D")
+    singleLinkedList.insertAtEnd("F")
+    singleLinkedList.insertAtEnd("F")
+    singleLinkedList.insertAtEnd("G")
 
-    println(singleLinkedList.search("D"))
-    singleLinkedList.reverseFromToPosition(1, 2)
-
+//    println(singleLinkedList.search("D"))
+//    singleLinkedList.reverseFromToPosition(1, 2)
+//    singleLinkedList.removeNthNodeFromEnd(1)
+    singleLinkedList.removeDuplicates()
 }
 
-class SingleNode<T>(val data: T) {
+class SingleNode<T>(val data: T?) {
     var next: SingleNode<T>? = null
 }
 
@@ -97,7 +103,7 @@ class SingleLinkedList<T> {
         while (current != null) {
             position += 1
             if (current.data == data) {
-                return Pair(current.data, position)
+                return Pair(current.data!!, position)
             }
             current = current.next
         }
@@ -172,6 +178,68 @@ class SingleLinkedList<T> {
         }
         head = ptr1
         ptr2?.next = null
+    }
+
+    /**
+     * Remove nth node from the end of the Linked List
+     */
+//    fun removeNthNodeFromEnd(n: Int) {
+//        val dummy = SingleNode<T>(data = null)
+//        dummy.next = head
+//        var slow: SingleNode<T>? = dummy
+//        var fast: SingleNode<T>? = dummy
+//
+//        for (i in 1..n) {
+//            if (fast == null) {
+//                print("Index Out Of Bound")
+//                return
+//            }
+//            fast = fast.next
+//        }
+//
+//        while (fast != null) {
+//            fast = fast.next
+//            slow = slow?.next
+//        }
+//
+//        slow?.next = slow?.next?.next
+//
+//        head = dummy.next
+//
+//        printLinkedList()
+//    }
+
+    /**
+     * Remove Duplicates from Sorted List
+     */
+    fun removeDuplicates() {
+
+        if (head == null) {
+            println("List is Empty")
+            return
+        }
+
+        val set = mutableSetOf<T>()
+
+
+        var current = head
+        var previous = SingleNode<T>(data = null)
+        previous.next = head
+
+        while (current != null) {
+            current.data?.let { data ->
+                if (set.add(data)) {
+                    previous = current as SingleNode<T>
+                    current = current?.next
+                } else {
+                    val duplicate = current
+                    previous.next = duplicate?.next
+                    current = current?.next
+                    duplicate?.next = null
+                }
+            }
+        }
+        printLinkedList()
     }
 
     fun printLinkedList() {
