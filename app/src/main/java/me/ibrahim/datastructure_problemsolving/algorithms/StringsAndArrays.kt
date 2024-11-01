@@ -34,7 +34,9 @@ fun main() {
 
 //    Algorithms.maxLenWithZeroSum(intArrayOf(1, 2, 3, -1, -2, -5, -4, 4, -6, -7))
 
-    Algorithms.firstUniqueCharacterInString("hellowworrldh")
+//    Algorithms.firstUniqueCharacterInString("hellowworrldh")
+
+    Algorithms.balanceParanthesisUsingStack("[{((a+b))}]")
 }
 
 object Algorithms {
@@ -342,6 +344,43 @@ object Algorithms {
         val uniqueChar2 = frequencyMap.filter { it.value == 1 }.keys.firstOrNull()
         println("Unique char2 in $s : $uniqueChar2")
 
+    }
+
+    //"[{()}]"  --> ({[ -->
+    fun balanceParanthesisUsingStack(expr: String) {
+
+        if (expr.isEmpty()) {
+            println("Empty String")
+            return
+        }
+
+        val stack = ArrayDeque<Char>()
+
+        for (char in expr) {
+            when (char) {
+                '(', '{', '[' -> {
+                    stack.addFirst(char)
+                }
+
+                ')', '}', ']' -> {
+                    val top = stack.removeFirstOrNull()
+                    if (matchChar(top, char).not()) {
+                        println("Not Balanced Paranthesis")
+                        return
+                    }
+                }
+            }
+        }
+
+        if (stack.isEmpty()) {
+            println("Balanced Paranthesis")
+        }
+    }
+
+    private fun matchChar(top: Char?, char: Char): Boolean {
+        return (top == '(' && char == ')') ||
+                (top == '{' && char == '}') ||
+                (top == '[' && char == ']')
     }
 
 }
