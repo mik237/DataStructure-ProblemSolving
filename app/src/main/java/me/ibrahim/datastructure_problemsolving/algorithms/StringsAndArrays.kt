@@ -32,7 +32,9 @@ fun main() {
 
 //    Algorithms.findMinAbsoluteDifference(intArrayOf(50, 16, 3, 8, 15, 17))
 
-    Algorithms.maxLenWithZeroSum(intArrayOf(1, 2, 3, -1, -2, -5, -4, 4, -6, -7))
+//    Algorithms.maxLenWithZeroSum(intArrayOf(1, 2, 3, -1, -2, -5, -4, 4, -6, -7))
+
+    Algorithms.firstUniqueCharacterInString("hellowworrldh")
 }
 
 object Algorithms {
@@ -322,6 +324,24 @@ object Algorithms {
         }
         println("Max length: $maxLength")
         return maxLength
+    }
+
+
+    fun firstUniqueCharacterInString(s: String) {
+        //Method #1
+        val uniqueChar = s.toCharArray().groupBy { it }.mapValues { it.value.size }.filter { it.value == 1 }.keys.firstOrNull()
+        println("Unique char in $s : $uniqueChar")
+
+
+        //Method #2
+        val frequencyMap = mutableMapOf<Char, Int>()
+        for (c in s) {
+            frequencyMap[c] = (frequencyMap[c] ?: 0) + 1
+        }
+
+        val uniqueChar2 = frequencyMap.filter { it.value == 1 }.keys.firstOrNull()
+        println("Unique char2 in $s : $uniqueChar2")
+
     }
 
 }
