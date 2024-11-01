@@ -148,6 +148,32 @@ class SingleLinkedList<T> {
         printLinkedList()
     }
 
+    fun detectAndRemoveLoop() {
+        var slow = head
+        var fast = head
+
+        while (fast?.next != null && fast.next?.next != null) {
+            slow = slow?.next
+            fast = fast.next?.next
+            if (slow == fast) {
+                //loop detected
+                removeLoop(slow)
+                println("Loop detected at ${slow?.data}")
+                break
+            }
+        }
+    }
+
+    private fun removeLoop(loopNode: SingleNode<T>?) {
+        var ptr1 = head
+        val ptr2 = loopNode
+        while (ptr2?.next != ptr1) {
+            ptr1 = ptr1?.next
+        }
+        head = ptr1
+        ptr2?.next = null
+    }
+
     fun printLinkedList() {
         println()
         var current = head
