@@ -6,11 +6,14 @@ fun main() {
     val singleLinkedList = SingleLinkedList<String>()
     singleLinkedList.insertAtBeginning("A")
     singleLinkedList.insertAtEnd("B")
-    singleLinkedList.insertAtEnd("C")
-    singleLinkedList.insertAtEnd("D")
-    singleLinkedList.insertAfter("G", "B")
+//    singleLinkedList.insertAtEnd("C")
+//    singleLinkedList.insertAtEnd("D")
+//    singleLinkedList.insertAfter("E", "D")
+//    singleLinkedList.insertAtEnd("F")
+//    singleLinkedList.insertAtEnd("G")
 
     println(singleLinkedList.search("D"))
+    singleLinkedList.reverseFromToPosition(1, 2)
 
 }
 
@@ -73,8 +76,7 @@ class SingleLinkedList<T> {
     }
 
     fun deleteFromEnd() {
-        if (head == null)
-            return
+        if (head == null) return
         if (head?.next == null) {
             head = null
             return
@@ -102,14 +104,56 @@ class SingleLinkedList<T> {
         return null
     }
 
+    //1,2,(3,4,5),6
+    fun reverseFromToPosition(from: Int, to: Int) {
+        if (head == null || from == to) println("n/a")
+        var length = 0
+        var temp = head
+        while (temp != null) {
+            length++
+            temp = temp.next
+        }
+        println("Length: $length")
+
+        if (from > to || from > length || to > length)
+            println("Invalid Range! ($from..$to)")
+
+        var current = head
+        var previous: SingleNode<T>? = null
+        for (i in 1 until from) {
+            previous = current
+            current = current?.next
+        }
+
+        val connectionPoint = previous
+        val tail = current
+        var next: SingleNode<T>? = null
+
+        for (i in from..to) {
+            next = current?.next
+            current?.next = previous
+            previous = current
+            current = next
+        }
+
+        if (connectionPoint?.next != null) {
+            connectionPoint.next = previous
+        } else {
+            head = previous
+        }
+
+        tail?.next = current
+
+        //print the list
+        printLinkedList()
+    }
+
     fun printLinkedList() {
         println()
         var current = head
         while (current != null) {
-            if (current.next == null)
-                print("${current.data}")
-            else
-                print("${current.data} => ")
+            if (current.next == null) print("${current.data}")
+            else print("${current.data} => ")
             current = current.next
         }
     }
