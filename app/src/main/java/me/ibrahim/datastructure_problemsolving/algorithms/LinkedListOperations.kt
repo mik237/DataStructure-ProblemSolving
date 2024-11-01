@@ -20,7 +20,8 @@ fun main() {
 //    println(singleLinkedList.search("D"))
 //    singleLinkedList.reverseFromToPosition(1, 2)
 //    singleLinkedList.removeNthNodeFromEnd(1)
-    singleLinkedList.removeDuplicates()
+//    singleLinkedList.removeDuplicates()
+    singleLinkedList.removeDuplicatesFromSortedLinkedList()
 }
 
 class SingleNode<T>(val data: T?) {
@@ -237,6 +238,23 @@ class SingleLinkedList<T> {
                     current = current?.next
                     duplicate?.next = null
                 }
+            }
+        }
+        printLinkedList()
+    }
+
+    /**
+     * Remove Duplicates From Sorted LinkedList
+     */
+    fun removeDuplicatesFromSortedLinkedList() {
+        var current = head
+        while (current?.next != null) {
+            if (current.data == current.next?.data) {
+                val duplicate = current.next
+                current.next = duplicate?.next
+                duplicate?.next = null
+            } else {
+                current = current.next
             }
         }
         printLinkedList()
