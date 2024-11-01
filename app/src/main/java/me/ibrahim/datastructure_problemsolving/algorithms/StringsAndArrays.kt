@@ -30,7 +30,9 @@ fun main() {
 
 //    Algorithms.reverseArray(intArrayOf(1, 2, 3, 4, 5))
 
-    Algorithms.findMinAbsoluteDifference(intArrayOf(50, 16, 3, 8, 15, 17))
+//    Algorithms.findMinAbsoluteDifference(intArrayOf(50, 16, 3, 8, 15, 17))
+
+    Algorithms.maxLenWithZeroSum(intArrayOf(1, 2, 3, -1, -2, -5, -4, 4, -6, -7))
 }
 
 object Algorithms {
@@ -284,4 +286,42 @@ object Algorithms {
         }
 
     }
+
+
+    fun maxLenWithZeroSum(arr: IntArray): Int {
+        val prefixSumMap = mutableMapOf<Int, Int>()  // HashMap to store prefixSum and its first occurrence index
+        var prefixSum = 0  // Initialize prefixSum
+        var maxLength = 0  // To keep track of the maximum length of subarray with sum 0
+
+        /*for (i in arr.indices) {
+            prefixSum += arr[i]  // Update the prefixSum with the current element
+
+            // Check if prefixSum is 0, meaning subarray from start to i has 0 sum
+            if (prefixSum == 0) {
+                maxLength = i + 1  // Update maxLength as subarray from 0 to i has 0 sum
+            }
+
+            // If prefixSum has been seen before, calculate the length of subarray with 0 sum
+            if (prefixSum in prefixSumMap) {
+                val previousIndex = prefixSumMap[prefixSum]!!
+                maxLength = maxOf(maxLength, i - previousIndex)
+            } else {
+                // Store the first occurrence of prefixSum
+                prefixSumMap[prefixSum] = i
+            }
+        }*/
+
+        //My solution
+        for (i in arr.indices) {
+            prefixSum += arr[i]
+
+            if (prefixSum == 0) {
+                maxLength = i + 1
+            }
+
+        }
+        println("Max length: $maxLength")
+        return maxLength
+    }
+
 }
