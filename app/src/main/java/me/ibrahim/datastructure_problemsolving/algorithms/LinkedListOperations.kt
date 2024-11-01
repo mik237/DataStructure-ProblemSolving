@@ -9,9 +9,8 @@ fun main() {
     singleLinkedList.insertAtEnd("C")
     singleLinkedList.insertAtEnd("D")
     singleLinkedList.insertAfter("G", "B")
-    singleLinkedList.printLinkedList()
-    singleLinkedList.deleteFromBeginning()
-    singleLinkedList.printLinkedList()
+
+    println(singleLinkedList.search("D"))
 
 }
 
@@ -87,6 +86,20 @@ class SingleLinkedList<T> {
         }
         current?.next = null
 
+    }
+
+
+    fun search(data: T): Pair<T, Int>? {
+        var current = head
+        var position = -1
+        while (current != null) {
+            position += 1
+            if (current.data == data) {
+                return Pair(current.data, position)
+            }
+            current = current.next
+        }
+        return null
     }
 
     fun printLinkedList() {
