@@ -36,7 +36,9 @@ fun main() {
 
 //    Algorithms.firstUniqueCharacterInString("hellowworrldh")
 
-    Algorithms.balanceParanthesisUsingStack("[{((a+b))}]")
+//    Algorithms.balanceParanthesisUsingStack("[{((a+b))}]")
+
+    println("Reversed: ${Algorithms.reverseStr("ibrahim")}")
 }
 
 object Algorithms {
@@ -383,4 +385,13 @@ object Algorithms {
                 (top == '[' && char == ']')
     }
 
+
+    /**
+     * Reverse a stack using recursion
+     */
+    fun reverseStr(str: String): String {
+        return if (str.isEmpty())
+            ""
+        else reverseStr(str.substring(1)) + str[0]
+    }
 }
