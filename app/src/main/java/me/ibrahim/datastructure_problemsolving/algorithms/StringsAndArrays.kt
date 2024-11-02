@@ -1,6 +1,7 @@
 package me.ibrahim.datastructure_problemsolving.algorithms
 
 import androidx.compose.ui.util.fastForEachReversed
+import java.util.Stack
 
 
 fun main() {
@@ -38,7 +39,15 @@ fun main() {
 
 //    Algorithms.balanceParanthesisUsingStack("[{((a+b))}]")
 
-    println("Reversed: ${Algorithms.reverseStr("ibrahim")}")
+//    println("Reversed: ${Algorithms.reverseStr("ibrahim")}")
+
+    val stack = Stack<String>()
+    stack.push("A")
+    stack.push("B")
+    stack.push("C")
+    stack.push("D")
+    stack.push("E")
+    Algorithms.reverseStack(stack)
 }
 
 object Algorithms {
@@ -387,11 +396,35 @@ object Algorithms {
 
 
     /**
-     * Reverse a stack using recursion
+     * Reverse a string using recursion
      */
     fun reverseStr(str: String): String {
         return if (str.isEmpty())
             ""
         else reverseStr(str.substring(1)) + str[0]
     }
+
+    /**
+     * Reverse a stack using recursion
+     */
+    fun <T> reverseStack(stack: Stack<T>) {
+        if (stack.isEmpty())
+            return
+        val item = stack.pop()
+        reverseStack(stack)
+        insertAtBottom(stack, item)
+        println(stack)
+    }
+
+    private fun <T> insertAtBottom(stack: Stack<T>, item: T) {
+        if (stack.isEmpty()) {
+            stack.push(item)
+            return
+        }
+
+        val topItem = stack.pop()
+        insertAtBottom(stack, item)
+        stack.push(topItem)
+    }
+
 }
