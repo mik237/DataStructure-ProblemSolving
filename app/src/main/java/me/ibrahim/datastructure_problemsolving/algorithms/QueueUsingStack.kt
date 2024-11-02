@@ -1,5 +1,7 @@
 package me.ibrahim.datastructure_problemsolving.algorithms
 
+import java.util.LinkedList
+import java.util.Queue
 import java.util.Stack
 
 fun main() {
@@ -16,6 +18,14 @@ fun main() {
     println(queue.dequeue())
     println(queue.dequeue())
 
+    val q = LinkedList<Int>()
+    q.add(1)
+    q.add(2)
+    q.add(3)
+    q.add(4)
+    q.add(5)
+
+    reverseFirstKElements<Int>(q, 3)
 }
 
 
@@ -52,4 +62,30 @@ class QueueUsingStack<T> {
 
         return copy.peek()
     }
+}
+
+
+fun <E> reverseFirstKElements(queue: Queue<E>, k: Int) {
+    println(queue)
+
+    if (k <= 0 || queue.isEmpty() || k > queue.size) {
+        println("Invalid K value")
+        return
+    }
+
+    val stack = Stack<E>()
+
+    for (i in 1..k) {
+        stack.push(queue.remove())
+    }
+
+    while (stack.isNotEmpty()) {
+        queue.add(stack.pop())
+    }
+
+    for (i in 1..(queue.size - k)) {
+        queue.add(queue.remove())
+    }
+
+    println(queue)
 }
