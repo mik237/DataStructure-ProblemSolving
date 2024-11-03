@@ -2,55 +2,130 @@ package me.ibrahim.datastructure_problemsolving.algorithms
 
 import androidx.compose.ui.util.fastForEachReversed
 import java.util.Stack
+import kotlin.math.abs
 
 
 fun main() {
-//    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvfkhweiugdkjvhdskfhskbksfdwoeu")
+    /*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvfkhweiugdkjvhdskfhskbksfdwoeu")
 
-//    Algorithms.areAnagrams("listen", "silent")
+        Algorithms.areAnagrams("listen", "silent")
 
-//    Algorithms.mostFrequentElement(intArrayOf(1, 2, 3, 4, 5, 4, 3, 5, 6, 10, 4, 3, 6, 7, 1, 0, 4))
+        Algorithms.mostFrequentElement(intArrayOf(1, 2, 3, 4, 5, 4, 3, 5, 6, 10, 4, 3, 6, 7, 1, 0, 4))
 
-//    Algorithms.checkDuplicates(intArrayOf(1, 2, 3, 4, 5))
+        Algorithms.checkDuplicates(intArrayOf(1, 2, 3, 4, 5))
 
-//    Algorithms.intersection(intArrayOf(9, 2, 5, 7, 4, 5), intArrayOf(1, 2, 3, 4, 5))
+        Algorithms.intersection(intArrayOf(9, 2, 5, 7, 4, 5), intArrayOf(1, 2, 3, 4, 5))
 
-//    Algorithms.removeDuplicates(intArrayOf(9, 2, 5, 5, 5, 5, 7, 7, 4, 5))
+        Algorithms.removeDuplicates(intArrayOf(9, 2, 5, 5, 5, 5, 7, 7, 4, 5))
 
-//    Algorithms.reverseWords("hello world dubai uae")
+        Algorithms.reverseWords("hello world dubai uae")
 
-//    Algorithms.reverseStringUsingRecursion("Hello world").let {
-//        print("Reverse with Recursion: $it")
-//    }
+        Algorithms.reverseStringUsingRecursion("Hello world").let {
+            print("Reverse with Recursion: $it")
+        }
 
-//    Algorithms.countCharOccurrences("helloWorld")
+        Algorithms.countCharOccurrences("helloWorld")
 
-//    Algorithms.findPairWithSum(intArrayOf(1, 2, 7, 11, 15), 45)
+        Algorithms.findPairWithSum(intArrayOf(1, 2, 7, 11, 15), 45)
 
-//    Algorithms.findMaxAndMin(intArrayOf())
+        Algorithms.findMaxAndMin(intArrayOf())
 
-//    Algorithms.reverseArray(intArrayOf(1, 2, 3, 4, 5))
+        Algorithms.reverseArray(intArrayOf(1, 2, 3, 4, 5))
 
-//    Algorithms.findMinAbsoluteDifference(intArrayOf(50, 16, 3, 8, 15, 17))
+        Algorithms.findMinAbsoluteDifference(intArrayOf(50, 16, 3, 8, 15, 17))
 
-//    Algorithms.maxLenWithZeroSum(intArrayOf(1, 2, 3, -1, -2, -5, -4, 4, -6, -7))
+        Algorithms.maxLenWithZeroSum(intArrayOf(1, 2, 3, -1, -2, -5, -4, 4, -6, -7))
 
-//    Algorithms.firstUniqueCharacterInString("hellowworrldh")
+        Algorithms.firstUniqueCharacterInString("hellowworrldh")
 
-//    Algorithms.balanceParanthesisUsingStack("[{((a+b))}]")
+        Algorithms.balanceParanthesisUsingStack("[{((a+b))}]")
 
-//    println("Reversed: ${Algorithms.reverseStr("ibrahim")}")
+        println("Reversed: ${Algorithms.reverseStr("ibrahim")}")
 
-    val stack = Stack<String>()
-    stack.push("A")
-    stack.push("B")
-    stack.push("C")
-    stack.push("D")
-    stack.push("E")
-    Algorithms.reverseStack(stack)
+        val stack = Stack<String>()
+        stack.push("A")
+        stack.push("B")
+        stack.push("C")
+        stack.push("D")
+        stack.push("E")
+        Algorithms.reverseStack(stack)
+
+        Algorithms.minimumSizeSubArrayWithMaxSum(intArrayOf(7, 6, 13, 12, 11))
+
+        Algorithms.longestUniqueSubstring("abcabcbb")
+
+        Algorithms.majorityElement(intArrayOf(3, 3, 4, 2, 4, 4, 2, 4, 4))
+
+        Algorithms.arePermutations("dabcf", "ebacd")
+        Algorithms.moveZeroesToEnd(intArrayOf(1, 2, 0, 0, 3))*/
+
+    Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 3))
 }
 
 object Algorithms {
+
+    /**
+     * Find all elements that appear twice in an array without using extra space and in O(n) time.
+     * i.e. in O(n) & space O(1)
+     */
+    fun findDuplicatesInArray(arr: IntArray) {
+        // TODO: this algo not working properly. Need to fix it.
+        for (i in arr.indices) {
+            val index = abs(arr[i])
+            if (arr[index] >= 0) {
+                arr[index] = -arr[index]
+            } else {
+                println("Duplicate: ${abs(arr[i])}")
+            }
+        }
+    }
+
+    fun moveZeroesToEnd(nums: IntArray) {
+        var zeroFoundAt = 0
+        for (i in nums.indices) {
+            if (nums[i] != 0) {
+                nums[zeroFoundAt++] = nums[i]
+            }
+        }
+        for (i in zeroFoundAt until nums.size) {
+            nums[i] = 0
+        }
+        println(nums.toList())
+    }
+
+    fun arePermutations(str1: String, str2: String) {
+        if (str1.length != str2.length) {
+            println("Not Permutations")
+            return
+        }
+
+        /*val permutation = str1.toCharArray().sorted() == str2.toCharArray().sorted()
+        if (permutation)
+            println("Permutations")
+        else
+            println("Not Permutations")*/
+
+        val str1Map = mutableMapOf<Char, Int>()
+        val str2Map = mutableMapOf<Char, Int>()
+
+        for (i in str1.indices) {
+            val c1 = str1.getOrNull(i)
+            val c2 = str2.getOrNull(i)
+            c1?.let {
+                str1Map[it] = (str1Map[it] ?: 0) + 1
+            }
+            c2?.let {
+                str2Map[it] = (str2Map[it] ?: 0) + 1
+            }
+        }
+
+        if (str1Map == str2Map) {
+            println("Permutations")
+        } else {
+            println("Not Permutations")
+        }
+    }
+
 
     //Write a function that finds the first non-repeated character in a string.
     fun findFirstNonRepeatedChar(input: String) {
@@ -425,6 +500,44 @@ object Algorithms {
         val topItem = stack.pop()
         insertAtBottom(stack, item)
         stack.push(topItem)
+    }
+
+
+    fun minimumSizeSubArrayWithMaxSum(arr: IntArray) {
+
+        val list = ArrayList<Int>()
+        arr.sort()
+        val sum = arr.sum()
+        var temp = 0
+        for (i in arr.size - 1 downTo 0) {
+            if (temp > sum / 2)
+                break
+            list.add(arr[i])
+            temp += arr[i]
+        }
+
+        print(list)
+    }
+
+
+    fun longestUniqueSubstring(s: String) {
+        val charIndexMap = mutableMapOf<Char, Int>()
+        var maxLength = 0
+        var start = 0
+        for ((i, char) in s.withIndex()) {
+            if (char in charIndexMap) {
+                start = maxOf(start, charIndexMap[char]!! + 1)
+            }
+            charIndexMap[char] = i
+            maxLength = maxOf(maxLength, i - start + 1)
+        }
+        println("Max length: $maxLength")
+    }
+
+
+    fun majorityElement(nums: IntArray) {
+        val group = nums.groupBy { it }.mapValues { it.value.size }.filter { it.value > (nums.size / 2) }
+        println(group)
     }
 
 }
