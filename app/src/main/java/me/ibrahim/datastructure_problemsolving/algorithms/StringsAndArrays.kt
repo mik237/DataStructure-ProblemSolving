@@ -63,13 +63,22 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
         Algorithms.countFrequencies(listOf(1, 2, 3, 1, 2, 3, 4, 5, 4))
     Algorithms.flattenListOfLists(listOf(listOf(3, 4), listOf(13, 14, 15), listOf(10, 20, 30, 40)))
     Algorithms.longestCommonPrefix(listOf("Flower", "Flower", "Flight"))
+        Algorithms.findFactorial(5)
         */
+    Algorithms.rotateArray(intArrayOf(1, 2, 3, 4), 7)
 
-    Algorithms.findFactorial(5)
 }
 
 object Algorithms {
 
+    fun rotateArray(arr: IntArray, k: Int) {
+        println(arr.contentToString())
+        val steps = k % arr.size
+        arr.reverse()
+        arr.reverse(0, steps)
+        arr.reverse(steps, arr.size)
+        println(arr.contentToString())
+    }
 
     fun findFactorial(n: Int) {
 //        Method 1 using reduce function
