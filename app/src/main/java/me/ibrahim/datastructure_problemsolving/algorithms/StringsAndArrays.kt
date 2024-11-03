@@ -62,12 +62,20 @@ fun main() {
         Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 3))
         Algorithms.maxPairwiseSum(listOf(1, 2, 3), listOf(4, 5))
         Algorithms.countFrequencies(listOf(1, 2, 3, 1, 2, 3, 4, 5, 4))
+    Algorithms.flattenListOfLists(listOf(listOf(3, 4), listOf(13, 14, 15), listOf(10, 20, 30, 40)))
         */
 
-    Algorithms.flattenListOfLists(listOf(listOf(3, 4), listOf(13, 14, 15), listOf(10, 20, 30, 40)))
+    Algorithms.longestCommonPrefix(listOf("Flower","Flower","Flight"))
 }
 
 object Algorithms {
+
+    fun longestCommonPrefix(strings: List<String>) {
+        val commonPrefix = strings.reduce { acc, s ->
+            acc.commonPrefixWith(s)
+        }
+        println("Prefix: $commonPrefix")
+    }
 
     /**
      * Find Elements Present in Only One of Two Lists (Symmetric Difference)
