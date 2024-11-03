@@ -73,6 +73,10 @@ object Algorithms {
      * Find Elements Present in Only One of Two Lists (Symmetric Difference)
      */
     fun symmetricDifference(list1: List<Int>, list2: List<Int>): Set<Int> {
+//        Method 1
+//        return (list1 + list2).groupBy { it }.mapValues { it.value.size }.filter { it.value == 1 }.keys
+
+//      Method 2
         return (list1 + list2).groupingBy { it }
             .eachCount()
             .filter { it.value == 1 }
