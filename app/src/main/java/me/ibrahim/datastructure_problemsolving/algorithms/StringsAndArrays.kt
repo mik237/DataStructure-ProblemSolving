@@ -5,8 +5,7 @@ import java.util.Stack
 import kotlin.math.abs
 
 
-fun main() {
-    /*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvfkhweiugdkjvhdskfhskbksfdwoeu")
+fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvfkhweiugdkjvhdskfhskbksfdwoeu")
 
         Algorithms.areAnagrams("listen", "silent")
 
@@ -63,12 +62,27 @@ fun main() {
         Algorithms.maxPairwiseSum(listOf(1, 2, 3), listOf(4, 5))
         Algorithms.countFrequencies(listOf(1, 2, 3, 1, 2, 3, 4, 5, 4))
     Algorithms.flattenListOfLists(listOf(listOf(3, 4), listOf(13, 14, 15), listOf(10, 20, 30, 40)))
+    Algorithms.longestCommonPrefix(listOf("Flower", "Flower", "Flight"))
         */
 
-    Algorithms.longestCommonPrefix(listOf("Flower","Flower","Flight"))
+    Algorithms.findFactorial(5)
 }
 
 object Algorithms {
+
+
+    fun findFactorial(n: Int) {
+//        Method 1 using reduce function
+        val factReduce = (1..n).reduce { acc, i -> acc * i }
+        println(factReduce)
+
+//        Method 2 using loop
+        var factLoop = 1
+        for (i in 1..n) {
+            factLoop *= i
+        }
+        println(factLoop)
+    }
 
     fun longestCommonPrefix(strings: List<String>) {
         val commonPrefix = strings.reduce { acc, s ->
@@ -85,10 +99,7 @@ object Algorithms {
 //        return (list1 + list2).groupBy { it }.mapValues { it.value.size }.filter { it.value == 1 }.keys
 
 //      Method 2
-        return (list1 + list2).groupingBy { it }
-            .eachCount()
-            .filter { it.value == 1 }
-            .keys
+        return (list1 + list2).groupingBy { it }.eachCount().filter { it.value == 1 }.keys
     }
 
     fun flattenListOfLists(listOfLists: List<List<Int>>) {
@@ -512,9 +523,7 @@ object Algorithms {
     }
 
     private fun matchChar(top: Char?, char: Char): Boolean {
-        return (top == '(' && char == ')') ||
-                (top == '{' && char == '}') ||
-                (top == '[' && char == ']')
+        return (top == '(' && char == ')') || (top == '{' && char == '}') || (top == '[' && char == ']')
     }
 
 
@@ -522,8 +531,7 @@ object Algorithms {
      * Reverse a string using recursion
      */
     fun reverseStr(str: String): String {
-        return if (str.isEmpty())
-            ""
+        return if (str.isEmpty()) ""
         else reverseStr(str.substring(1)) + str[0]
     }
 
@@ -531,8 +539,7 @@ object Algorithms {
      * Reverse a stack using recursion
      */
     fun <T> reverseStack(stack: Stack<T>) {
-        if (stack.isEmpty())
-            return
+        if (stack.isEmpty()) return
         val item = stack.pop()
         reverseStack(stack)
         insertAtBottom(stack, item)
@@ -558,8 +565,7 @@ object Algorithms {
         val sum = arr.sum()
         var temp = 0
         for (i in arr.size - 1 downTo 0) {
-            if (temp > sum / 2)
-                break
+            if (temp > sum / 2) break
             list.add(arr[i])
             temp += arr[i]
         }
