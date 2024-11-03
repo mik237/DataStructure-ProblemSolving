@@ -69,8 +69,18 @@ fun main() {
 
 object Algorithms {
 
+    /**
+     * Find Elements Present in Only One of Two Lists (Symmetric Difference)
+     */
+    fun symmetricDifference(list1: List<Int>, list2: List<Int>): Set<Int> {
+        return (list1 + list2).groupingBy { it }
+            .eachCount()
+            .filter { it.value == 1 }
+            .keys
+    }
+
     fun flattenListOfLists(listOfLists: List<List<Int>>) {
-       val updated = listOfLists.flatMap {
+        val updated = listOfLists.flatMap {
             it.map {
                 "$it-"
             }
