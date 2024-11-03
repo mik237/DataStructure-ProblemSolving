@@ -57,13 +57,34 @@ fun main() {
         Algorithms.majorityElement(intArrayOf(3, 3, 4, 2, 4, 4, 2, 4, 4))
 
         Algorithms.arePermutations("dabcf", "ebacd")
-        Algorithms.moveZeroesToEnd(intArrayOf(1, 2, 0, 0, 3))*/
+        Algorithms.moveZeroesToEnd(intArrayOf(1, 2, 0, 0, 3))
 
-//    Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 3))
-    Algorithms.maxPairwiseSum(listOf(1, 2, 3), listOf(4, 5))
+        Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 3))
+        Algorithms.maxPairwiseSum(listOf(1, 2, 3), listOf(4, 5))
+        Algorithms.countFrequencies(listOf(1, 2, 3, 1, 2, 3, 4, 5, 4))
+        */
+
+    Algorithms.flattenListOfLists(listOf(listOf(3, 4), listOf(13, 14, 15), listOf(10, 20, 30, 40)))
 }
 
 object Algorithms {
+
+    fun flattenListOfLists(listOfLists: List<List<Int>>) {
+       val updated = listOfLists.flatMap {
+            it.map {
+                "$it-"
+            }
+        }
+        println(updated)
+        println(listOfLists.flatten())
+    }
+
+    fun countFrequencies(nums: List<Int>) {
+        val grouping = nums.groupingBy { it }
+        val count = grouping.eachCount()
+        println(count)
+    }
+
 
     fun maxPairwiseSum(list1: List<Int>, list2: List<Int>): Int {
         return list1.zip(list2).maxOf { it.first + it.second }
