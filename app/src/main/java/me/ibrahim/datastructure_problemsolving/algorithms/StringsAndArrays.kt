@@ -59,10 +59,15 @@ fun main() {
         Algorithms.arePermutations("dabcf", "ebacd")
         Algorithms.moveZeroesToEnd(intArrayOf(1, 2, 0, 0, 3))*/
 
-    Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 3))
+//    Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 3))
+    Algorithms.maxPairwiseSum(listOf(1, 2, 3), listOf(4, 5))
 }
 
 object Algorithms {
+
+    fun maxPairwiseSum(list1: List<Int>, list2: List<Int>): Int {
+        return list1.zip(list2).maxOf { it.first + it.second }
+    }
 
     /**
      * Find all elements that appear twice in an array without using extra space and in O(n) time.
