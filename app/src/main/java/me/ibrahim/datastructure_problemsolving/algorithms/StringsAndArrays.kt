@@ -540,4 +540,8 @@ object Algorithms {
         println(group)
     }
 
+    fun productOfAllElementsExceptSelf(nums: IntArray): List<Int> {
+        val totalProduct = nums.reduce { acc, num -> acc * num }
+        return nums.map { totalProduct / it }
+    }
 }
