@@ -66,11 +66,27 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
         Algorithms.findFactorial(5)
         */
 //    Algorithms.rotateArrayToLeft(intArrayOf(1, 2, 3, 4), 7)
-    Algorithms.linearSearch(intArrayOf(1, 2, 7, 7, 4), 7)
+//    Algorithms.linearSearch(intArrayOf(1, 2, 7, 7, 4), 7)
+    Algorithms.bubbleSort(intArrayOf(10, 2, 5, 7, 4))
 
 }
 
 object Algorithms {
+
+    fun bubbleSort(arr: IntArray) {
+        println(arr.contentToString())
+        val n = arr.size
+        for (i in arr.indices) {
+            for (j in 0 until n - i - 1) {
+                if (arr[j] > arr[j + 1]) {
+                    val temp = arr[j]
+                    arr[j] = arr[j + 1]
+                    arr[j + 1] = temp
+                }
+            }
+        }
+        println(arr.contentToString())
+    }
 
     fun linearSearch(arr: IntArray, key: Int) {
         if (arr.isEmpty()) {
