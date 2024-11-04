@@ -68,14 +68,25 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
 //    Algorithms.rotateArrayToLeft(intArrayOf(1, 2, 3, 4), 7)
 //    Algorithms.linearSearch(intArrayOf(1, 2, 7, 7, 4), 7)
 //    Algorithms.bubbleSort(intArrayOf(10, 2, 5, 7, 4))
-    Algorithms.selectionSort(intArrayOf(10, 2, 5, 7, 4))
+//    Algorithms.selectionSort(intArrayOf(10, 2, 5, 7, 4))
+    Algorithms.insertionSort(intArrayOf(10, 2, 5, 7, 4))
 
 }
 
 object Algorithms {
 
     fun insertionSort(arr: IntArray) {
-
+        println(arr.contentToString())
+        for (i in 1 until arr.size) {
+            val key = arr[i]
+            var j = i - 1
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j]
+                j -= 1
+            }
+            arr[j + 1] = key
+        }
+        println(arr.contentToString())
     }
 
     fun selectionSort(arr: IntArray) {
