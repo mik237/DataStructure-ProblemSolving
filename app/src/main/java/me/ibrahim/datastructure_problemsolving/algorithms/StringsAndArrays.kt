@@ -67,11 +67,30 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
         */
 //    Algorithms.rotateArrayToLeft(intArrayOf(1, 2, 3, 4), 7)
 //    Algorithms.linearSearch(intArrayOf(1, 2, 7, 7, 4), 7)
-    Algorithms.bubbleSort(intArrayOf(10, 2, 5, 7, 4))
+//    Algorithms.bubbleSort(intArrayOf(10, 2, 5, 7, 4))
+    Algorithms.selectionSort(intArrayOf(10, 2, 5, 7, 4))
 
 }
 
 object Algorithms {
+
+    fun insertionSort(arr: IntArray) {
+
+    }
+
+    fun selectionSort(arr: IntArray) {
+        println(arr.contentToString())
+        for (i in arr.indices) {
+            var minIndex = i
+            for (j in i + 1 until arr.size) {
+                if (arr[j] < arr[minIndex]) minIndex = j
+            }
+            val temp = arr[i]
+            arr[i] = arr[minIndex]
+            arr[minIndex] = temp
+        }
+        println(arr.contentToString())
+    }
 
     fun bubbleSort(arr: IntArray) {
         println(arr.contentToString())
@@ -108,8 +127,7 @@ object Algorithms {
     }
 
     fun binarySearch(arr: IntArray, key: Int) {
-        if (arr.isEmpty())
-            println("Not found. Array is Empty")
+        if (arr.isEmpty()) println("Not found. Array is Empty")
 
         var left = 0
         var right = arr.lastIndex
