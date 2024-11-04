@@ -65,11 +65,82 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
     Algorithms.longestCommonPrefix(listOf("Flower", "Flower", "Flight"))
         Algorithms.findFactorial(5)
         */
-    Algorithms.rotateArray(intArrayOf(1, 2, 3, 4), 7)
+//    Algorithms.rotateArrayToLeft(intArrayOf(1, 2, 3, 4), 7)
+    Algorithms.linearSearch(intArrayOf(1, 2, 7, 7, 4), 7)
 
 }
 
 object Algorithms {
+
+    fun linearSearch(arr: IntArray, key: Int) {
+        if (arr.isEmpty()) {
+            println("Not found. Array is Empty")
+            return
+        }
+
+        var found = false
+        for (i in arr.indices) {
+            if (arr[i] == key) {
+                found = true
+                println("$key found at index: $i")
+                break
+            }
+        }
+        if (found.not()) {
+            println("$key not found")
+        }
+    }
+
+    fun binarySearch(arr: IntArray, key: Int) {
+        if (arr.isEmpty())
+            println("Not found. Array is Empty")
+
+        var left = 0
+        var right = arr.lastIndex
+        var found = false
+
+        while (left < right) {
+            val midIndex = (left + right) / 2
+            if (arr[midIndex] == key) {
+                found = true
+                println("$key found at index: $midIndex")
+                break
+            } else if (arr[midIndex] > key) {
+                right = midIndex - 1
+            } else left = midIndex + 1
+        }
+        if (found.not()) {
+            println("$key not found")
+        }
+    }
+
+    fun rotateArrayToLeft(arr: IntArray, k: Int) {
+        println(arr.contentToString())
+
+        val steps = k % arr.size
+        for (i in 0 until steps) {
+            val first = arr[0]
+            for (j in 1 until arr.size) {
+                arr[j - 1] = arr[j]
+            }
+            arr[arr.lastIndex] = first
+        }
+        println(arr.contentToString())
+    }
+
+    fun reverseArray1(arr: IntArray) {
+        println(arr.contentToString())
+        var left = 0
+        var right = arr.lastIndex
+        while (left < right) {
+            val temp = arr[left]
+            arr[left] = arr[right]
+            arr[right] = temp
+            left++
+            right--
+        }
+        println(arr.contentToString())
+    }
 
     fun rotateArray(arr: IntArray, k: Int) {
         println(arr.contentToString())
