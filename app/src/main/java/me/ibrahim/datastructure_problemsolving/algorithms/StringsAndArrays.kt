@@ -69,12 +69,35 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
 //    Algorithms.linearSearch(intArrayOf(1, 2, 7, 7, 4), 7)
 //    Algorithms.bubbleSort(intArrayOf(10, 2, 5, 7, 4))
 //    Algorithms.selectionSort(intArrayOf(10, 2, 5, 7, 4))
-    Algorithms.insertionSort(intArrayOf(10, 2, 5, 7, 4))
+//    Algorithms.insertionSort(intArrayOf(10, 2, 5, 7, 4))
+    println(Algorithms.mergeSort(intArrayOf(10, 2, 5, 7, 4)).contentToString())
 
 }
 
 object Algorithms {
 
+    fun mergeSort(arr: IntArray): IntArray {
+        if (arr.size <= 1) return arr
+        val middle = arr.size / 2
+        val left = arr.sliceArray(0 until middle)
+        val right = arr.sliceArray(middle until arr.size)
+        return merge(mergeSort(left), mergeSort(right))
+    }
+
+    private fun merge(left: IntArray, right: IntArray): IntArray {
+        var i = 0
+        var j = 0
+        val merged = mutableListOf<Int>()
+        while (i < left.size && j < right.size) {
+            if (left[i] <= right[j]) merged.add(left[i++])
+            else merged.add(right[j++])
+        }
+        while (i < left.size) merged.add(left[i++])
+        while (j < right.size) merged.add(right[j++])
+        return merged.toIntArray()
+    }
+
+    /**********************/
     fun insertionSort(arr: IntArray) {
         println(arr.contentToString())
         for (i in 1 until arr.size) {
