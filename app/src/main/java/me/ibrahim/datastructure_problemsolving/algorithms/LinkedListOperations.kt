@@ -5,18 +5,18 @@ import kotlin.math.sin
 fun main() {
     val singleLinkedList = SingleLinkedList<String>()
     singleLinkedList.insertAtBeginning("A")
-    singleLinkedList.insertAtEnd("B")
-    singleLinkedList.insertAtEnd("C")
-    singleLinkedList.insertAtEnd("D")
-    singleLinkedList.insertAtEnd("D")
-    singleLinkedList.insertAtEnd("D")
-    singleLinkedList.insertAtEnd("D")
-    singleLinkedList.insertAtEnd("D")
-    singleLinkedList.insertAfter("E", "D")
-    singleLinkedList.insertAtEnd("F")
-    singleLinkedList.insertAtEnd("F")
-    singleLinkedList.insertAtEnd("G")
-
+    singleLinkedList.insert("B")
+    singleLinkedList.insert("C")
+    singleLinkedList.insert("D")
+    singleLinkedList.insert("D")
+    singleLinkedList.insert("D")
+    singleLinkedList.insert("D")
+    singleLinkedList.insert("D")
+    singleLinkedList.insertAfter("E", "B")
+    singleLinkedList.insert("F")
+    singleLinkedList.insert("F")
+    singleLinkedList.insert("G")
+    singleLinkedList.printLinkedList()
 //    println(singleLinkedList.search("D"))
 //    singleLinkedList.reverseFromToPosition(1, 2)
 //    singleLinkedList.removeNthNodeFromEnd(1)
@@ -24,48 +24,43 @@ fun main() {
     singleLinkedList.removeDuplicatesFromSortedLinkedList()
 }
 
-class SingleNode<T>(val data: T?) {
-    var next: SingleNode<T>? = null
-}
+data class Node<T>(val data: T?, var next: Node<T>?)
 
 class SingleLinkedList<T> {
 
-    private var head: SingleNode<T>? = null
-
-    //insert, insertAt, insertAtEnd, delete, deleteAt search, print
+    private var head: Node<T>? = null
 
 
-    fun insertAtBeginning(data: T) {
-        val singleNode = SingleNode(data = data)
-        singleNode.next = head
-        head = singleNode
-    }
-
-    fun insertAtEnd(data: T) {
-        val singleNode = SingleNode(data = data)
+    //inserting at End by default
+    fun insert(data: T) {
+        val node = Node(data = data, next = null)
         if (head == null) {
-            head = singleNode
+            head = node
         } else {
             var current = head
             while (current?.next != null) {
                 current = current.next
             }
-            current?.next = singleNode
+            current?.next = node
         }
     }
 
-    fun insertAfter(data: T, after: T) {
-        val newNode = SingleNode(data = data)
+    fun insertAtBeginning(data: T) {
+        val node = Node(data, head)
+        head = node
+    }
 
+    fun insertAfter(data: T, after: T) {
+        val node = Node(data, null)
         if (head == null) {
-            head = newNode
+            head = node
         } else {
             var current = head
 
             while (current != null) {
                 if (current.data == after) {
-                    newNode.next = current.next
-                    current.next = newNode
+                    node.next = current.next
+                    current.next = node
                     break
                 }
                 current = current.next
@@ -75,14 +70,14 @@ class SingleLinkedList<T> {
 
     fun deleteFromBeginning() {
         head?.let {
-            var tempHead = head
+            val tempHead = head
             head = head?.next
             tempHead?.next = null
-            tempHead = null
         }
     }
 
-    fun deleteFromEnd() {
+    //delete from End by default
+    fun delete() {
         if (head == null) return
         if (head?.next == null) {
             head = null
@@ -126,7 +121,7 @@ class SingleLinkedList<T> {
             println("Invalid Range! ($from..$to)")
 
         var current = head
-        var previous: SingleNode<T>? = null
+        var previous: Node<T>? = null
         for (i in 1 until from) {
             previous = current
             current = current?.next
@@ -134,7 +129,7 @@ class SingleLinkedList<T> {
 
         val connectionPoint = previous
         val tail = current
-        var next: SingleNode<T>? = null
+        var next: Node<T>? = null
 
         for (i in from..to) {
             next = current?.next
@@ -171,7 +166,7 @@ class SingleLinkedList<T> {
         }
     }
 
-    private fun removeLoop(loopNode: SingleNode<T>?) {
+    private fun removeLoop(loopNode: Node<T>?) {
         var ptr1 = head
         val ptr2 = loopNode
         while (ptr2?.next != ptr1) {
@@ -224,13 +219,13 @@ class SingleLinkedList<T> {
 
 
         var current = head
-        var previous = SingleNode<T>(data = null)
+        var previous = Node<T>(data = null, null)
         previous.next = head
 
         while (current != null) {
             current.data?.let { data ->
                 if (set.add(data)) {
-                    previous = current as SingleNode<T>
+                    previous = current as Node<T>
                     current = current?.next
                 } else {
                     val duplicate = current
