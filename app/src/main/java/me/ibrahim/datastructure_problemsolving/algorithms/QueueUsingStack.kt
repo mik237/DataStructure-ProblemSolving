@@ -19,14 +19,16 @@ fun main() {
     println(queue.dequeue())
     println(queue.dequeue())
 
-    val q = LinkedList<Int>()
-    q.add(1)
-    q.add(2)
-    q.add(3)
-    q.add(4)
-    q.add(5)
+    val q = LinkedList<Int>().also {
+        it.add(1)
+        it.add(2)
+        it.add(3)
+        it.add(4)
+        it.add(5)
 
-    reverseFirstKElements<Int>(q, 3)
+       // reverseFirstKElements<Int>(it, 3)
+        reverseFirstKElements(it, 3, "")
+    }
 }
 
 
@@ -89,4 +91,17 @@ fun <E> reverseFirstKElements(queue: Queue<E>, k: Int) {
     }
 
     println(queue)
+}
+
+fun <E> reverseFirstKElements(list: List<E>, k: Int, a: String) {
+    println(list)
+    if (k > list.size) {
+        println(list.reversed())
+        return
+    }
+
+    val firstKItems = list.take(k).reversed()
+    val remainingItems = list.drop(k)
+
+    println(firstKItems + remainingItems)
 }

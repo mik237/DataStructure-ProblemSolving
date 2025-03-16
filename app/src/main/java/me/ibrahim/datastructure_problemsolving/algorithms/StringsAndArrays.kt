@@ -1,5 +1,6 @@
 package me.ibrahim.datastructure_problemsolving.algorithms
 
+import androidx.collection.mutableIntListOf
 import androidx.compose.ui.util.fastForEachReversed
 import java.util.Stack
 import kotlin.math.abs
@@ -7,7 +8,6 @@ import kotlin.math.abs
 
 fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvfkhweiugdkjvhdskfhskbksfdwoeu")
 
-        Algorithms.areAnagrams("listen", "silent")
 
         Algorithms.mostFrequentElement(intArrayOf(1, 2, 3, 4, 5, 4, 3, 5, 6, 10, 4, 3, 6, 7, 1, 0, 4))
 
@@ -17,7 +17,7 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
 
         Algorithms.removeDuplicates(intArrayOf(9, 2, 5, 5, 5, 5, 7, 7, 4, 5))
 
-        Algorithms.reverseWords("hello world dubai uae")
+
 
         Algorithms.reverseStringUsingRecursion("Hello world").let {
             print("Reverse with Recursion: $it")
@@ -31,15 +31,13 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
 
         Algorithms.reverseArray(intArrayOf(1, 2, 3, 4, 5))
 
-        Algorithms.findMinAbsoluteDifference(intArrayOf(50, 16, 3, 8, 15, 17))
+
 
         Algorithms.maxLenWithZeroSum(intArrayOf(1, 2, 3, -1, -2, -5, -4, 4, -6, -7))
 
         Algorithms.firstUniqueCharacterInString("hellowworrldh")
 
-        Algorithms.balanceParanthesisUsingStack("[{((a+b))}]")
 
-        println("Reversed: ${Algorithms.reverseStr("ibrahim")}")
 
         val stack = Stack<String>()
         stack.push("A")
@@ -49,32 +47,95 @@ fun main() {/*    Algorithms.findFirstNonRepeatedChar("goubemhkhgbvdkhoiubdkhkvf
         stack.push("E")
         Algorithms.reverseStack(stack)
 
-        Algorithms.minimumSizeSubArrayWithMaxSum(intArrayOf(7, 6, 13, 12, 11))
-
-        Algorithms.longestUniqueSubstring("abcabcbb")
-
-        Algorithms.majorityElement(intArrayOf(3, 3, 4, 2, 4, 4, 2, 4, 4))
-
-        Algorithms.arePermutations("dabcf", "ebacd")
         Algorithms.moveZeroesToEnd(intArrayOf(1, 2, 0, 0, 3))
 
-        Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 3))
-        Algorithms.maxPairwiseSum(listOf(1, 2, 3), listOf(4, 5))
-        Algorithms.countFrequencies(listOf(1, 2, 3, 1, 2, 3, 4, 5, 4))
-    Algorithms.flattenListOfLists(listOf(listOf(3, 4), listOf(13, 14, 15), listOf(10, 20, 30, 40)))
-    Algorithms.longestCommonPrefix(listOf("Flower", "Flower", "Flight"))
         Algorithms.findFactorial(5)
         */
-//    Algorithms.rotateArrayToLeft(intArrayOf(1, 2, 3, 4), 7)
+
 //    Algorithms.linearSearch(intArrayOf(1, 2, 7, 7, 4), 7)
-//    Algorithms.bubbleSort(intArrayOf(10, 2, 5, 7, 4))
 //    Algorithms.selectionSort(intArrayOf(10, 2, 5, 7, 4))
 //    Algorithms.insertionSort(intArrayOf(10, 2, 5, 7, 4))
-    println(Algorithms.mergeSort(intArrayOf(10, 2, 5, 7, 4)).contentToString())
+
+//    println(Algorithms.mergeSort(intArrayOf(10, 2, 5, 7, 4)).contentToString())
+
+//    println("Output: ${Algorithms.removeVowels("aehelloworldibrahimu")}")
+//    println("Output: ${Algorithms.calculateRunningSum(intArrayOf(1,2,3,4)).toList()}")
+//    println("Most common word: ${Algorithms.mostCommonWord("..Bob hit a ball, the hit BALL flew far after it was hit.", arrayOf("hit"))}")
+//    println("${Algorithms.productOfAllElementsExceptSelf(intArrayOf(2, 3, 4))}")
+//    Algorithms.majorityElement(intArrayOf(3, 3, 4, 2, 4, 4, 2, 4, 4))
+
+//    Algorithms.longestUniqueSubstring("abcabcbb")
+//    Algorithms.longestUniqueSubstring("geeksforgeeks")
+
+//    Algorithms.minimumSizeSubArrayWithMaxSum(intArrayOf(7, 6, 13, 12, 11))
+//    Algorithms.minimumSizeSubArrayWithMaxSum(intArrayOf(2, 3, -2, 1, 4, -1, 2, -3, 5))
+//    Algorithms.minimumSizeSubArrayWithMaxSum(intArrayOf(1, 2, 3))
+//    println("Reversed: ${Algorithms.reverseStr("ibrahim")}")
+//    Algorithms.balanceParanthesisUsingStack("[({(a+b))}]")
+
+//    Algorithms.findMinAbsoluteDifference(intArrayOf(50, 20, 3, 8, 15, 17))
+//    Algorithms.reverseWords("hello world dubai uae")
+
+//    Algorithms.areAnagrams("listen", "silent")
+//    Algorithms.arePermutations("dabce", "ebacf")
+
+//    Algorithms.findDuplicatesInArray(intArrayOf(1, 3, 2, 0, 1, 0, 1))
+//    println(Algorithms.maxPairwiseSum(listOf(1, 2, 3), listOf(4, 5)))
+//    println(Algorithms.countFrequencies(listOf(1, 2, 3, 1,1, 2, 3, 4, 5, 4)))
+//    Algorithms.flattenListOfLists(listOf(listOf(3, 4), listOf(13, 14, 15), listOf(10, 20, 30, 40)))
+//    Algorithms.longestCommonPrefix(listOf("Flower", "Flower", "Flight"))
+//    Algorithms.rotateArray(intArrayOf(1, 2, 3, 4), 1)
+//    Algorithms.rotateArrayToLeft(intArrayOf(1, 2, 3, 4), 1)
+
+//    Algorithms.bubbleSort(intArrayOf(10, 2, 5, 7, 4, 11, 1, 3, 9, 21, 12, 6, 8))
+    Algorithms.twoSum(intArrayOf(1, 2, 3, 4), 7)
 
 }
 
 object Algorithms {
+    //    (1, 2, 3, 4), 5
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+
+        val seen = mutableIntListOf() //1, 2,
+
+        for (a in nums) {  //1, 2, 3
+            val b = target - a //4, 3, 2
+            if (seen.contains(b)) {
+                println("TwoSum: $b, $a")
+                break
+            }
+            seen.add(a)
+        }
+        return intArrayOf(0, 1)
+    }
+
+    fun mostCommonWord(paragraph: String, banned: Array<String>): String {
+        val words = paragraph.lowercase().split("\\W+|\\s+".toRegex()).filterNot { it.isEmpty() }
+        val bannedWords = banned.toHashSet()
+
+        val wordsToCount = words.filterNot { it in bannedWords }.groupingBy { it }.eachCount()
+        return wordsToCount.maxBy { it.value }.key
+    }
+
+    fun findMostFrequent(nums: IntArray): Int {
+        val grouping = nums.toList().groupingBy { it }
+        val count = grouping.eachCount()
+        return count.maxBy { it.value }.key
+    }
+
+    //input: [1,2,3,4] => output: [1,3,6,10]
+    fun calculateRunningSum(nums: IntArray): IntArray {
+        return nums.runningReduce { acc, element -> acc + element }.toIntArray()
+    }
+
+    fun removeVowels(str: String): String {
+        val vowels = charArrayOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+        return str.filter {
+            it !in vowels
+        }
+    }
+
+    /*************************************************/
 
     fun mergeSort(arr: IntArray): IntArray {
         if (arr.size <= 1) return arr
@@ -112,6 +173,7 @@ object Algorithms {
         println(arr.contentToString())
     }
 
+    //O(n^2)
     fun selectionSort(arr: IntArray) {
         println(arr.contentToString())
         for (i in arr.indices) {
@@ -126,11 +188,12 @@ object Algorithms {
         println(arr.contentToString())
     }
 
+    //[5, 3, 8, 4, 2]
     fun bubbleSort(arr: IntArray) {
         println(arr.contentToString())
         val n = arr.size
         for (i in arr.indices) {
-            for (j in 0 until n - i - 1) {
+            for (j in 0 until arr.size - 1) {
                 if (arr[j] > arr[j + 1]) {
                     val temp = arr[j]
                     arr[j] = arr[j + 1]
@@ -163,6 +226,7 @@ object Algorithms {
     fun binarySearch(arr: IntArray, key: Int) {
         if (arr.isEmpty()) println("Not found. Array is Empty")
 
+        arr.sorted()
         var left = 0
         var right = arr.lastIndex
         var found = false
@@ -182,18 +246,22 @@ object Algorithms {
         }
     }
 
-    fun rotateArrayToLeft(arr: IntArray, k: Int) {
+    fun rotateArrayToLeft(arr: IntArray, steps: Int) {
         println(arr.contentToString())
+        val k = steps % arr.size
 
-        val steps = k % arr.size
-        for (i in 0 until steps) {
+        //Method 1
+        /*for (i in 0 until k) {
             val first = arr[0]
             for (j in 1 until arr.size) {
                 arr[j - 1] = arr[j]
             }
             arr[arr.lastIndex] = first
         }
-        println(arr.contentToString())
+        println(arr.contentToString())*/
+
+        val result = arr.sliceArray(k until arr.size) + arr.sliceArray(0 until k)
+        println("Result: ${result.contentToString()}")
     }
 
     fun reverseArray1(arr: IntArray) {
@@ -213,12 +281,17 @@ object Algorithms {
     fun rotateArray(arr: IntArray, k: Int) {
         println(arr.contentToString())
         val steps = k % arr.size
-        arr.reverse()
+        val n = arr.size
+        /*arr.reverse()
         arr.reverse(0, steps)
         arr.reverse(steps, arr.size)
-        println(arr.contentToString())
+        println(arr.contentToString())*/
+
+        val result = arr.sliceArray(n - steps until n) + arr.sliceArray(0 until n - steps)
+        println(result.contentToString())
     }
 
+    //5! = 5*4*3*2*1
     fun findFactorial(n: Int) {
 //        Method 1 using reduce function
         val factReduce = (1..n).reduce { acc, i -> acc * i }
@@ -237,6 +310,16 @@ object Algorithms {
             acc.commonPrefixWith(s)
         }
         println("Prefix: $commonPrefix")
+
+        //Method 2
+        var commPrefix = strings[0]
+        for (i in 1..strings.lastIndex) {
+            commPrefix = commPrefix.commonPrefixWith(strings[i])
+            if (commPrefix.isEmpty())
+                break
+        }
+        println("Method2 Prefix: $commPrefix")
+
     }
 
     /**
@@ -248,13 +331,14 @@ object Algorithms {
 
 //      Method 2
         return (list1 + list2).groupingBy { it }.eachCount().filter { it.value == 1 }.keys
+
+        //Method 3
+//        return (list1.toSet() - list2.toSet()) + (list2.toSet() - list1.toSet())
     }
 
     fun flattenListOfLists(listOfLists: List<List<Int>>) {
         val updated = listOfLists.flatMap {
-            it.map {
-                "$it-"
-            }
+            it
         }
         println(updated)
         println(listOfLists.flatten())
@@ -276,17 +360,31 @@ object Algorithms {
      * i.e. in O(n) & space O(1)
      */
     fun findDuplicatesInArray(arr: IntArray) {
-        // TODO: this algo not working properly. Need to fix it.
+
+        val duplicates = mutableListOf<Int>()
+        var zeroCount = 0
+
         for (i in arr.indices) {
-            val index = abs(arr[i])
-            if (arr[index] >= 0) {
-                arr[index] = -arr[index]
+            val num = kotlin.math.abs(arr[i])  // Get absolute value
+
+            if (num == 0) {
+                zeroCount++
+                if (zeroCount == 2) duplicates.add(0)  // Add only once when found twice
+                continue
+            }
+            val index = num - 1  // Handle 0 separately
+
+            if (arr[index] < 0) {
+                duplicates.add(num)
             } else {
-                println("Duplicate: ${abs(arr[i])}")
+                arr[index] = -arr[index]
             }
         }
+
+        println("Duplicate: $duplicates")
     }
 
+    //[1,2,0,3,0,4,5] => [1,2,3,4,5,0,0]
     fun moveZeroesToEnd(nums: IntArray) {
         var zeroFoundAt = 0
         for (i in nums.indices) {
@@ -327,15 +425,27 @@ object Algorithms {
         }
 
         if (str1Map == str2Map) {
-            println("Permutations")
+            println("Map: Permutations")
         } else {
-            println("Not Permutations")
+            println("Map: Not Permutations")
+        }
+
+        val str1map = str1.groupBy { it }.mapValues { it.value.size }
+        val str2map = str2.groupBy { it }.mapValues { it.value.size }
+
+        if (str1map == str2map) {
+            println("map: Permutations")
+        } else {
+            println("map: Not Permutations")
         }
     }
 
 
     //Write a function that finds the first non-repeated character in a string.
     fun findFirstNonRepeatedChar(input: String) {
+        if (input.isEmpty())
+            return
+
         val charFrequency = mutableMapOf<Char, Int>()
 
         for (i in input) {
@@ -366,6 +476,9 @@ object Algorithms {
 
         val anagram = str1.toCharArray().sorted() == str2.toCharArray().sorted()
         println("Anagram: $anagram")
+
+        println("Anagram: ${str1.toSet().intersect(str2.toSet()) == str1.toSet()}")
+
     }
 
 
@@ -449,19 +562,20 @@ object Algorithms {
 
         //reversing words & then reversing characters of each word.
         sentence.split(" ").fastForEachReversed {
-            println(it.reversed())
+            print("${it.reversed()} ")
         }
+        println()
 
         //using iteration
         var reversedStr2 = ""
-        for (i in sentence.length - 1 downTo 0) {
+        for (i in sentence.lastIndex downTo 0) {
             reversedStr2 += sentence[i]
         }
         println("using iteration: $reversedStr2")
 
         //another approach using StringBuilder#reverse function
-        var reversedStr3 = StringBuilder(sentence).reverse()
-        println("reversedStr3: $reversedStr2")
+        val reversedStr3 = StringBuilder(sentence).reverse()
+        println("reversedStr3: $reversedStr3")
 
     }
 
@@ -533,6 +647,10 @@ object Algorithms {
                 if (arr[i] < min) min = arr[i]
             }
             println("Max: $max, Min: $min")
+
+            //Method #2
+            max = arr.max()
+            min = arr.min()
         }
 
         //using buildIn functions on IntArray
@@ -567,12 +685,11 @@ object Algorithms {
             //if arr size is less than 2, there is no pair possible, hence difference is 0
             print(0)
         } else {
-            arr.sort()
             var minAbsDiff = Int.MAX_VALUE
             var a = arr[0]
             var b = arr[1]
             for (i in 0..<arr.lastIndex) {
-                val absDiff = kotlin.math.abs(arr[i] - arr[i + 1])
+                val absDiff = abs(arr[i] - arr[i + 1])
                 if (absDiff < minAbsDiff) {
                     a = arr[i]
                     b = arr[i + 1]
@@ -637,6 +754,8 @@ object Algorithms {
         val uniqueChar2 = frequencyMap.filter { it.value == 1 }.keys.firstOrNull()
         println("Unique char2 in $s : $uniqueChar2")
 
+        //Method #3
+        val unikChar = s.toCharArray().toList().groupingBy { it }.eachCount().filterValues { it == 1 }.keys.firstOrNull()
     }
 
     //"[{()}]"  --> ({[ -->
@@ -705,6 +824,27 @@ object Algorithms {
         stack.push(topItem)
     }
 
+    /*Given an array of positive integers nums and a positive integer target,
+     return the minimal length of a subarray whose sum is greater than or equal to target.
+     If there is no such subarray, return 0 instead.*/
+    fun minSubArrayLen(target: Int, nums: IntArray): Int {
+        var left = 0
+        var sum = 0
+        var minLength = Int.MAX_VALUE
+
+        for (right in nums.indices) {
+            sum += nums[right]  // Expand window
+
+            // Shrink window from the left while sum is ≥ target
+            while (sum >= target) {
+                minLength = minOf(minLength, right - left + 1)
+                sum -= nums[left]  // Shrink window
+                left++
+            }
+        }
+
+        return if (minLength == Int.MAX_VALUE) 0 else minLength
+    }
 
     fun minimumSizeSubArrayWithMaxSum(arr: IntArray) {
 
@@ -722,28 +862,53 @@ object Algorithms {
     }
 
 
-    fun longestUniqueSubstring(s: String) {
+    //"geeksforgeeks"
+    fun longestUniqueSubstring(s: String): String {
         val charIndexMap = mutableMapOf<Char, Int>()
         var maxLength = 0
         var start = 0
+        var maxStart = 0  // To track the start index of the longest substring
+
         for ((i, char) in s.withIndex()) {
             if (char in charIndexMap) {
                 start = maxOf(start, charIndexMap[char]!! + 1)
             }
             charIndexMap[char] = i
-            maxLength = maxOf(maxLength, i - start + 1)
+
+            // Update maxLength and track the start of the longest substring
+            if (i - start + 1 > maxLength) {
+                maxLength = i - start + 1
+                maxStart = start
+            }
         }
         println("Max length: $maxLength")
+        println("Result: ${s.substring(maxStart, maxStart + maxLength)}")
+        return s.substring(maxStart, maxStart + maxLength)
     }
 
 
     fun majorityElement(nums: IntArray) {
+        val moreFrequent = nums.groupBy { it }.mapValues { it.value.size }.maxBy { it.value }
+        println("More Frequent: $moreFrequent")
         val group = nums.groupBy { it }.mapValues { it.value.size }.filter { it.value > (nums.size / 2) }
         println(group)
     }
 
     fun productOfAllElementsExceptSelf(nums: IntArray): List<Int> {
-        val totalProduct = nums.reduce { acc, num -> acc * num }
-        return nums.map { totalProduct / it }
+        val n = nums.size
+        val result = MutableList(n) { 1 }
+
+        var leftProduct = 1
+        for (i in nums.indices) {
+            result[i] = leftProduct
+            leftProduct *= nums[i]
+        }
+
+        var rightProduct = 1
+        for (i in nums.indices.reversed()) {
+            result[i] *= rightProduct
+            rightProduct *= nums[i]
+        }
+        return result
     }
 }
